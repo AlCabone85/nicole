@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentinstag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            overflow: hidden; /* Verhindert Scrollen */
+        }
+        h1, p {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            position: relative;
+            display: inline-block;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #nein {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hallo Nicole</h1>
+    <p>Möchtest du zu Valentinstag meine Freundin sein?</p>
+    
+    <div class="buttons">
+        <button id="ja" onclick="antwortJa()">Ja</button>
+        <button id="nein" onclick="antwortNein()">Nein</button>
+    </div>
+
+    <script>
+        let neinClicks = 0;
+
+        function antwortJa() {
+            document.body.innerHTML = "<h1>Vielen Dank, ich freue mich sehr! ❤️</h1>";
+        }
+
+        function antwortNein() {
+            neinClicks++;
+            if (neinClicks >= 5) {
+                document.getElementById("nein").style.display = "none";
+            } else {
+                let button = document.getElementById("nein");
+                let maxX = (window.innerWidth - button.offsetWidth) / 2;  // Nur die Hälfte der Breite
+                let maxY = (window.innerHeight - button.offsetHeight) / 2; // Nur die Hälfte der Höhe
+
+                let randomX = Math.floor(Math.random() * maxX);
+                let randomY = Math.floor(Math.random() * maxY);
+
+                button.style.left = randomX + "px";
+                button.style.top = randomY + "px";
+            }
+        }
+    </script>
+
+</body>
+</html>
